@@ -580,3 +580,17 @@ const char * _PDF_utf16_to_utf32(PDF *p, const char *utf16string, int len, const
 const char * _PDF_utf32_to_utf16(PDF *p, const char *utf32string, int len, const char *ordering, int *size) {
 	PDF_TRY(p) { return PDF_utf32_to_utf16(p, utf32string, len, ordering, size); } PDF_CATCH(p) { } return "";
 }
+
+// POCA Functions for generating dynamic blocks
+int _PDF_poca_new(PDF *p, const char *optlist) {
+	PDF_TRY(p) { return PDF_poca_new(p, optlist); } PDF_CATCH(p) { } 
+	return -1;
+}
+
+void _PDF_poca_insert(PDF *p, int block, const char *optlist) {
+	PDF_TRY(p) { PDF_poca_insert(p, block, optlist); } PDF_CATCH(p) { }
+}
+
+void _PDF_poca_delete(PDF *p, int block, const char *optlist) {
+	PDF_TRY(p) { PDF_poca_delete(p, block, optlist); } PDF_CATCH(p) { }
+}

@@ -1105,6 +1105,28 @@ PDFLIB_API void PDFLIB_CALL
 PDF_xshow(PDF *p, const char *text, int len, const double *xadvancelist);
 
 
+/* Create a pdf block object
+   Returns: A Block handle, or -1 (in PHP: 0) on error.
+*/
+PDFLIB_API int PDFLIB_CALL
+PDF_poca_new(PDF *p, const char *optlist);
+
+
+/* Create a pdf block object
+   Returns: A Block handle, or -1 (in PHP: 0) on error.
+*/
+PDFLIB_API int PDFLIB_CALL
+PDF_poca_new(PDF *p, const char *optlist);
+
+
+PDFLIB_API void PDFLIB_CALL
+PDF_poca_insert(PDF *p, int block, const char *optlist);
+
+
+
+PDFLIB_API void PDFLIB_CALL
+PDF_poca_delete(PDF *p, int block, const char *optlist);
+
 /*
  * ----------------------------------------------------------------------
  * PDFlib API structure with function pointers to all API functions
@@ -1128,6 +1150,10 @@ struct PDFlib_api_s {
     int revision;		/* PDFlib revision number */
 
     int reserved;		/* reserved */
+
+    int (PDFLIB_CALL * PDF_poca_new)(PDF *p, const char *optlist);
+    void (PDFLIB_CALL * PDF_poca_insert)(PDF *p, int block, const char *optlist);
+    void (PDFLIB_CALL * PDF_poca_delete)(PDF *p, int block, const char *optlist);
 
     void (PDFLIB_CALL * PDF_activate_item)(PDF *p, int id);
     int (PDFLIB_CALL * PDF_add_bookmark)(PDF *p, const char *text,

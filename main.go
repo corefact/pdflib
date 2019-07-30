@@ -798,3 +798,21 @@ func (p *PDFlib) Translate(tx, ty float64) error {
 	C._PDF_translate(p.val, C.double(tx), C.double(ty))
 	return p.catch()
 }
+
+// PocaNew ...
+func (p *PDFlib) PocaNew(options string) (int, error) {
+	ret := C._PDF_poca_new(p.val, C.CString(options))
+	return int(ret), p.catch()
+}
+
+// PocaInsert ...
+func (p *PDFlib) PocaInsert(blockHandle int, options string) error {
+	C._PDF_poca_insert(p.val, C.int(blockHandle), C.CString(options))
+	return p.catch()
+}
+
+// PocaDelete ...
+func (p *PDFlib) PocaDelete(blockHandle int, options string) error {
+	C._PDF_poca_delete(p.val, C.int(blockHandle), C.CString(options))
+	return p.catch()
+}
